@@ -1,0 +1,3 @@
+[submodule "noted-api"]
+	path = noted-api
+	url = https://github.com/edCoder1/noted-api.git
