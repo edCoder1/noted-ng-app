@@ -1,11 +1,18 @@
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NotesMainComponent } from './components/notes-main/notes-main.component';
 
 const routes: Routes = [
   {
+    path: 'feedback',
+    loadChildren: () =>
+      import('./modules/feedback/feedback.module').then(
+        (m) => m.FeedbackModule
+      ),
+  },
+  {
     path: 'notes',
-    component: NotesMainComponent,
+    loadChildren: () =>
+      import('./modules/main/main.module').then((m) => m.MainModule),
   },
 ];
 
