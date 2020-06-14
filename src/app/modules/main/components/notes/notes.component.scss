@@ -1,0 +1,35 @@
+div.notes-content {
+  display: flex;
+  padding-left: 1rem;
+  padding-top: 3rem;
+
+  section.notebook-menu {
+    padding-top: 1rem;
+    padding-bottom: 0.5rem;
+    background: #eeeeee;
+    width: 20%;
+    max-width: 13rem;
+
+    ul li {
+      > i {
+        cursor: pointer;
+      }
+      > label {
+        padding-left: 1rem;
+        cursor: pointer;
+      }
+    }
+  }
+  section.notes-panel {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    background: greenyellow;
+    > div {
+      > span {
+        > label {
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+.main-actions {
+  display: flex;
+  .buttons-div {
+    > button {
+      margin-left: 10px;
+      > i {
+        font-size: small;
+      }
+      vertical-align: bottom;
+      > label {
+        text-decoration: underline;
+        padding-left: 0.5rem;
+        cursor: pointer;
+      }
+    }
+  }
+}
