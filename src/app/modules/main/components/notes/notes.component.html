@@ -1,4 +1,30 @@
-<p>notes works!</p>
-<div>
-  <button (click)="getAllNotes()">CLICK ME</button>
+<app-notes-actions></app-notes-actions>
+<!-- Notes Content -->
+<div class="notes-content">
+  <!-- Notebooks Menu -->
+  <section class="notebook-menu">
+    <ul>
+      <li>
+        <i class="fas fa-book"></i>
+        <label>All</label>
+      </li>
+      <li *ngFor="let notebook of notebooks" class="notebook-item">
+        <i class="fas fa-book"></i>
+        <label>{{ notebook.name }}</label>
+      </li>
+    </ul>
+  </section>
+  <!-- Notes panel -->
+  <section *ngFor="let note of notes" class="notes-panel">
+    <div>
+      <span>
+        <label>{{ note.title }}</label>
+      </span>
+      <div>
+        <span>
+          <label>{{ note.text }}</label>
+        </span>
+      </div>
+    </div>
+  </section>
 </div>
