@@ -1,5 +1,6 @@
 export interface Notebook {
   name: string;
+  id?: string;
   // readonly class: string;
   // readonly action: Actions;
 }

@@ -27,4 +27,12 @@ export class NotebooksService {
   public addNotebook(notebook: Notebook): void {
     this.notebooks.push(notebook);
   }
+
+  public updateNotebook(notebook: Notebook): Observable<Notebook> {
+    return this.http.put<Notebook>(`${this.NOTEBOOKS_BASE_URL}`, notebook);
+  }
+
+  public deleteNotebook(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.NOTEBOOKS_BASE_URL}/${id}`);
+  }
 }

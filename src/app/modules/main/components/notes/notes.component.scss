@@ -7,16 +7,34 @@ div.notes-content {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
     background: #eeeeee;
-    width: 20%;
-    max-width: 13rem;
+    width: 30%;
+    max-width: 30rem;
 
     ul li {
       > i {
         cursor: pointer;
+        padding-right: 0.5rem;
       }
       > label {
         padding-left: 1rem;
         cursor: pointer;
+      }
+      > input {
+        padding-left: 1rem;
+        width: 80%;
+        cursor: pointer;
+        border: none;
+        background: #eeeeee;
+      }
+      > input:focus {
+        border-top: none; // ?
+        border-left: none;
+        border-right: none;
+      }
+
+      > a {
+        padding-left: 0.5rem;
+        // width: 15%;
       }
     }
   }

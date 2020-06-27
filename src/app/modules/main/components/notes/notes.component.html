@@ -6,11 +6,20 @@
     <ul>
       <li>
         <i class="fas fa-book"></i>
-        <label>All</label>
+        <label>All Notes</label>
       </li>
       <li *ngFor="let notebook of notebooks" class="notebook-item">
         <i class="fas fa-book"></i>
-        <label>{{ notebook.name }}</label>
+        <!-- <label>{{ notebook.name }}</label> -->
+        <input
+          [(ngModel)]="notebook.name"
+          (change)="updateNotebook(notebook)"
+          type="text"
+          name="name"
+        />
+        <a class="text-danger" (click)="deleteNotebook(notebook)">
+          <i class="fa fa-trash-alt fa-sm"></i>
+        </a>
       </li>
     </ul>
   </section>
