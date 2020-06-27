@@ -57,6 +57,36 @@ export class NotesComponent implements OnInit, OnDestroy {
     );
   }
 
+  public async updateNotebook(notebook: Notebook): Promise<void> {
+    await this._notebooksService.updateNotebook(notebook).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+  }
+
+  public deleteNotebook(notebook: Notebook): void {
+    if (confirm(`Are you sure you want to delete ${notebook.name} Notebook?`)) {
+      this._notebooksService.deleteNotebook(notebook.id).subscribe(
+        (res) => {
+          console.log(res);
+
+          this.getAllNotebooks();
+          // const index: number = this.notebooks.indexOf(notebook);
+          // console.log(index);
+          // this.notebooks.slice(index, 2);
+          console.log(this.notebooks);
+        },
+        (err) => {
+          console.log(err.message);
+        }
+      );
+    }
+  }
+
   public fake(): void {
     console.log('called fake()');
   }
