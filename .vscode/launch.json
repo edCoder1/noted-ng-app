@@ -9,6 +9,16 @@
             "mainClass": "noted.NotedApiApp",
             "projectName": "noted-api",
             "args": ""
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-SampleApp<noted-api>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "com.edcoder1.sample.SampleApp",
+            "projectName": "noted-api",
+            "args": ""
         }
     ]
 }

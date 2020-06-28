@@ -1,2 +1,6 @@
 <app-header class="container"></app-header>
 <router-outlet class="container"></router-outlet>
+
+<a *ngIf="!hideTryButton" routerLink="/beta" (click)="tryBetaStuff()">
+  <button class="btn btn-info btn-try-beta-stuff">TRY BETA STUFF!</button>
+</a>
