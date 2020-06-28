@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class NotebooksService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private readonly NOTEBOOKS_BASE_URL = 'http://localhost:6060/api/notebook';
+  private readonly NOTEBOOKS_BASE_URL = 'api/notebook';
   private readonly NOTEBOOKS_ALL_URI = '/all';
 
   public notebooks: Notebook[];
