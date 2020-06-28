@@ -1,5 +1,10 @@
 {
-    "/entry/*": {
+    "/api": {
+        "target": "http://localhost:6060",
+        "secure": false,
+        "logLevel": "debug"
+    },
+    "/entry": {
         "target": "http://localhost:3000",
         "secure": false,
         "logLevel": "debug"

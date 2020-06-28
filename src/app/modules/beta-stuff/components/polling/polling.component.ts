@@ -10,6 +10,7 @@ export class PollingComponent implements OnInit {
 
   public hashToPoll: string;
   public pollStatus: any;
+  public timeMillis: number;
 
   constructor(private _pollingService: PollingService) { }
 
@@ -17,12 +18,24 @@ export class PollingComponent implements OnInit {
   }
 
 
-  startLongProcess() {
+  startLongProcess(millis: number): void {
     console.log('starting long process...');
-    this._pollingService.startLongProcess().subscribe(
+
+    console.log(millis);
+
+    this._pollingService.startLongProcess(millis).subscribe(
       res => {
         this.pollStatus = res;
         this.hashToPoll = res.hash;
+
+
+        this._pollingService.automaticPollStatus(res.hash, 2500).subscribe(
+          res => {
+            console.log(res);
+            this.pollStatus = res;
+          }
+        )
+
       })
   }
 

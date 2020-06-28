@@ -10,9 +10,9 @@ import { Note } from '../../components/notes/models/note';
   providedIn: 'root',
 })
 export class NotesService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
-  private readonly NOTES_BASE_URL = 'http://localhost:6060/api/note';
+  private readonly NOTES_BASE_URL = 'api/note';
   private readonly NOTES_ALL_URI = '/all';
 
   public getAllNotes(): Observable<Note[]> {

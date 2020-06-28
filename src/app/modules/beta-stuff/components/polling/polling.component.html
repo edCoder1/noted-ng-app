@@ -1,16 +1,27 @@
 <div>
     <p>The purpose of this feature is to check wether a polling strategy for Long Proceses are working as ecpected,
         meaning
-        that log process last more than 2 mins witch is the browsers limit
+        that long process last more than 2 mins witch is the browsers limit.
     </p>
+    <p>
+        Note: TRIGGER MANUAL POLL uses current hash available.
+    </p>
+    <p>
+        Note: In browser's console or network tab, you can see the polling happening after clicking the START LONG
+        PROCESS button.
+    </p>
+</div>
+<div class="col-md-12">
+    <input type="number" placeholder="Enter time to process in millis">
 </div>
 
 <div class="col-md-12 poll-buttons">
-    <button class="btn btn-warning" (click)="startLongProcess()">START LONG PROCESS</button>
-    <button class="btn btn-warning" (click)="manualPoll(hashToPoll)">TRIGERR MANUAL POLL</button>
+    <button class="btn btn-warning" (click)="startLongProcess(20000)">START LONG PROCESS</button>
+    <button class="btn btn-warning" (click)="manualPoll(hashToPoll)">TRIGGER MANUAL POLL</button>
 </div>
 <div class="status-labels" *ngIf="pollStatus">
     <label>STATUS: {{pollStatus.status}}</label>
     <label>MESSAGE: {{pollStatus.message}}</label>
     <label>HASH: {{pollStatus.hash}}</label>
+    <label>STORED DATA: {{pollStatus.storedData}}</label>
 </div>
