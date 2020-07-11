@@ -36,7 +36,11 @@ export class PollingComponent implements OnInit {
           }
         )
 
-      })
+      },
+      error => {
+        console.warn(error);
+        alert(error.message)
+      });
   }
 
 
@@ -44,8 +48,12 @@ export class PollingComponent implements OnInit {
     this._pollingService.pollStatus(hash).subscribe(
       res => {
         this.pollStatus = res;
+      },
+      error => {
+        console.warn(error);
+        alert(error.message)
       }
-    )
+    );
   }
 
 }

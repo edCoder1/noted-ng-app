@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-// import {  } from 'rxjs/observable/throw';
-
 import { Note } from '../../components/notes/models/note';
 
 @Injectable({
