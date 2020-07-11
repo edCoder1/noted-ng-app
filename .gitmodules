@@ -1,3 +1,6 @@
 [submodule "noted-api"]
 	path = noted-api
 	url = https://github.com/edCoder1/noted-api.git
+[submodule "beta-apis/poll_w_nestjs"]
+	path = beta-apis/poll_w_nestjs
+	url = https://github.com/edCoder1/poll_w_nestjs
