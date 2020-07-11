@@ -8,7 +8,7 @@ div.notes-content {
     padding-bottom: 0.5rem;
     background: #eeeeee;
     width: 30%;
-    max-width: 30rem;
+    max-width: 30%;
 
     ul li {
       > i {
@@ -39,13 +39,26 @@ div.notes-content {
     }
   }
   section.notes-panel {
+    margin-left: 2rem;
     padding-left: 0.8rem;
     padding-right: 0.8rem;
-    background: greenyellow;
+    max-width: 100%;
+    max-height: 20%;
     > div {
+      background: greenyellow;
       > span {
         > label {
           font-weight: bold;
+          font-size: 17px;
+          margin: 0.5rem;
+        }
+      }
+      > div {
+        margin: 0.5rem;
+        > span{
+          > label {
+            font-size: 17px;
+          }
         }
       }
     }
