@@ -28,8 +28,20 @@ export class NotebooksService {
     this.notebooks.push(notebook);
   }
 
-  public updateNotebook(notebook: Notebook): Observable<Notebook> {
-    return this.http.put<Notebook>(`${this.NOTEBOOKS_BASE_URL}/${notebook.id}/${notebook.name}`, notebook);
+  public updateNotebook(notebook: Notebook): void {
+    if (!notebook.name) {
+      alert("A Notebook MUST have a name");
+    } else {
+      this.http.put<Notebook>(`${this.NOTEBOOKS_BASE_URL}`, notebook).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.warn(err);
+          alert(err.message);
+        }
+      );
+    }
   }
 
   public deleteNotebook(id: string): Observable<void> {

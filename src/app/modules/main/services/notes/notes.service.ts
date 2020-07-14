@@ -16,4 +16,9 @@ export class NotesService {
   public getAllNotes(): Observable<Note[]> {
     return this.http.get<Note[]>(`${this.NOTES_BASE_URL}${this.NOTES_ALL_URI}`);
   }
+
+  public updateNote(note: Note): Observable<Note> {
+    console.warn(note);
+    return
+  }
 }

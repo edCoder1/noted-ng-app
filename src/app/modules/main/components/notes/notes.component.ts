@@ -14,13 +14,13 @@ export class NotesComponent implements OnInit, OnDestroy {
   constructor(
     private _notesService: NotesService,
     private _notebooksService: NotebooksService
-  ) {}
+  ) { }
 
   private allNotes$: Subscription = new Subscription();
   private allNotebooks$: Subscription = new Subscription();
 
-  public notes: Note[];
-  public notebooks: Notebook[];
+  public notes: Note[] = [];
+  public notebooks: Notebook[] = [];
 
   ngOnInit(): void {
     this.getAllNotes();
@@ -40,7 +40,9 @@ export class NotesComponent implements OnInit, OnDestroy {
         this.notes = res;
       },
       (err) => {
-        alert(err.message);
+        console.warn(err);
+
+        // alert(err.message);
       }
     );
   }
@@ -52,20 +54,16 @@ export class NotesComponent implements OnInit, OnDestroy {
         this.notebooks = this._notebooksService.notebooks; //   ???
       },
       (err) => {
-        alert(err.message);
+        console.warn(err);
+
+        // alert(err.message);
       }
     );
   }
 
   public async updateNotebook(notebook: Notebook): Promise<void> {
-    await this._notebooksService.updateNotebook(notebook).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        alert(err.message);
-      }
-    );
+    await this._notebooksService.updateNotebook(notebook);
+    !notebook.name ? this.getAllNotebooks() : null;
   }
 
   public deleteNotebook(notebook: Notebook): void {
@@ -90,4 +88,10 @@ export class NotesComponent implements OnInit, OnDestroy {
   public fake(): void {
     console.log('called fake()');
   }
+
+  public async updateNote(note: Note): Promise<void> {
+    await this._notesService.updateNote(note);
+  }
+
+
 }

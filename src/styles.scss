@@ -6,3 +6,12 @@
 body {
     margin: 1rem;
 }
+
+
+// All these element ypes with No border on focus
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
