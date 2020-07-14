@@ -10,29 +10,27 @@
       </li>
       <li *ngFor="let notebook of notebooks" class="notebook-item">
         <i class="fas fa-book"></i>
-        <!-- <label>{{ notebook.name }}</label> -->
-        <input
-          [(ngModel)]="notebook.name"
-          (change)="updateNotebook(notebook)"
-          type="text"
-          name="name"
-        />
-        <a class="text-danger" (click)="deleteNotebook(notebook)">
-          <i class="fa fa-trash-alt fa-sm"></i>
-        </a>
+        <input [(ngModel)]="notebook.name" (change)="updateNotebook(notebook)" type="text" name="name" />
+        <i class="fa fa-trash-alt fa-sm text-danger" (click)="deleteNotebook(notebook)"></i>
+
       </li>
     </ul>
   </section>
   <!-- Notes panel -->
-  <section *ngFor="let note of notes" class="notes-panel">
-    <div>
-      <span>
-        <label>{{ note.title }}</label>
-      </span>
+  <p *ngIf="!notes?.length">There are no Notes in this Notebook :(</p>
+  <section class="notes-panel">
+    <div *ngFor="let note of notes" class="card single-card">
       <div>
         <span>
-          <label>{{ note.text }}</label>
+          <!-- <label>{{ note.title }}</label> -->
+          <input [(ngModel)]="note.title" type="text" class="note-title" (change)="updateNote(note)">
+          <i class="fa fa-trash-alt fa-sm text-danger"></i>
         </span>
+        <div>
+          <span>
+            <textarea [(ngModel)]="note.text" type="text" class="note-text" (change)="updateNote(note)"></textarea>
+          </span>
+        </div>
       </div>
     </div>
   </section>
