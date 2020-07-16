@@ -41,7 +41,11 @@ yarn-error.log
 testem.log
 /typings
 /*.log
+.env
 
 # System Files
 .DS_Store
 Thumbs.db
+
+# Sonar Qube
+*/sonarqube_*/*
