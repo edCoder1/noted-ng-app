@@ -1,0 +1,45 @@
+version: '3.2'
+ 
+services:
+  sonarqube:
+    image: sonarqube
+    # image: sonarqube:7.9.3-community
+    container_name: sonarqube
+    depends_on: 
+      - database
+    ports:
+      - 9000:9000
+    networks:
+      - sonarnet
+    environment:
+      - SONARQUBE_JDBC_URL=${SONARQUBE_JDBC_URL}
+      - SONARQUBE_JDBC_USERNAME=${POSTGRES_USER}
+      - SONARQUBE_JDBC_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${SONAR_QUBE_CONF_LOCAL}:${SONAR_QUBE_CONF_CONTAINER}
+      - ${SONAR_QUBE_DATA_LOCAL}:${SONAR_QUBE_DATA_CONTAINER}
+      - ${SONAR_QUBE_EXTENSIONS_LOCAL}:${SONAR_QUBE_EXTENSIONS_CONTAINER}
+      - ${SONAR_QUBE_BUNDLED_PLUGINS_LOCAL}:${SONAR_QUBE_BUNDLED_PLUGINS_CONTAINER}      
+  database:
+    image: postgres
+    container_name: database
+    networks:
+      - sonarnet
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    volumes:
+      - ${POSTGRESQL_LOCAL}:${POSTGESQL_CONTAINER}
+      - ${POSTGRESQL_DATA_LOCAL}:${POSTGRESQL_DATA_CONTAINER}
+      
+networks:
+  sonarnet:
+    driver: bridge
+ 
+volumes:
+  sonarqube_conf_local:
+  sonarqube_data_local:
+  sonarqube_extensions_local:
+  sonarqube_bundled_plugins_local:
+  postgresql_local:
+  postgresql_data_local:
