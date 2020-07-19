@@ -6,12 +6,9 @@
       > i {
         font-size: small;
       }
-      vertical-align: bottom;
-      > label {
-        text-decoration: underline;
-        padding-left: 0.5rem;
-        cursor: pointer;
-      }
+    }
+    >button:disabled {
+      cursor: not-allowed;
     }
   }
 }

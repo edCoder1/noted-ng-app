@@ -1,30 +1,32 @@
-<app-notes-actions></app-notes-actions>
+<app-notes-actions [selectedNotebook]="selectedNotebook"></app-notes-actions>
 <!-- Notes Content -->
 <div class="notes-content">
   <!-- Notebooks Menu -->
   <section class="notebook-menu">
     <ul>
-      <li>
+      <li (click)="onAllNotes()">
         <i class="fas fa-book"></i>
-        <label>All Notes</label>
+        <label>All Note</label>
       </li>
-      <li *ngFor="let notebook of notebooks" class="notebook-item">
+      <li *ngFor="let notebook of notebooks" class="notebook-item" (click)="setSelectedNotebook(notebook)"
+        (click)="getNotesOfNotebook(notebook)">
         <i class="fas fa-book"></i>
         <input [(ngModel)]="notebook.name" (change)="updateNotebook(notebook)" type="text" name="name" />
-        <i class="fa fa-trash-alt fa-sm text-danger" (click)="deleteNotebook(notebook)"></i>
+        <i class="fa fa-trash-alt fa-sm text-danger" (click)="deleteNotebook(notebook.id)"></i>
 
       </li>
     </ul>
   </section>
   <!-- Notes panel -->
-  <p *ngIf="!notes?.length">There are no Notes in this Notebook :(</p>
   <section class="notes-panel">
+    <h3 *ngIf="!selectedNotebook">All Notes</h3>
+    <h3 *ngIf="selectedNotebook">{{selectedNotebook.name}}</h3>
+    <p *ngIf="!notes.length">There are no Notes in this Notebook :(</p>
     <div *ngFor="let note of notes" class="card single-card">
       <div>
         <span>
-          <!-- <label>{{ note.title }}</label> -->
           <input [(ngModel)]="note.title" type="text" class="note-title" (change)="updateNote(note)">
-          <i class="fa fa-trash-alt fa-sm text-danger"></i>
+          <i class="fa fa-trash-alt fa-sm text-danger" (click)="deleteNote(note.id)"></i>
         </span>
         <div>
           <span>

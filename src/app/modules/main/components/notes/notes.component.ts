@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NotesService } from '../../services/notes/notes.service';
 import { Note } from './models/note';
-import { Observable, Subject, Subscription } from 'rxjs';
-import { Notebook, Classes } from './models/notebook';
+import { Subscription } from 'rxjs';
+import { Notebook } from './models/notebook';
 import { NotebooksService } from '../../services/notebooks/notebooks.service';
 
 @Component({
@@ -22,6 +22,8 @@ export class NotesComponent implements OnInit, OnDestroy {
   public notes: Note[] = [];
   public notebooks: Notebook[] = [];
 
+  public selectedNotebook: Notebook;
+
   ngOnInit(): void {
     this.getAllNotes();
     this.getAllNotebooks();
@@ -32,17 +34,19 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.allNotebooks$.unsubscribe();
   }
 
-  public getAllNotes(): void {
-    console.log('called getallNotes()');
+  public onAllNotes(): void {
+    this.getAllNotes();
+    this.selectedNotebook = null;
+  }
 
+  public getAllNotes(): void {
     this.allNotes$ = this._notesService.getAllNotes().subscribe(
       (res) => {
-        this.notes = res;
+        this._notesService.notes = res;
+        this.notes = this._notesService.notes;
       },
       (err) => {
-        console.warn(err);
-
-        // alert(err.message);
+        alert(err.message);
       }
     );
   }
@@ -54,44 +58,71 @@ export class NotesComponent implements OnInit, OnDestroy {
         this.notebooks = this._notebooksService.notebooks; //   ???
       },
       (err) => {
-        console.warn(err);
-
-        // alert(err.message);
+        alert(err.message);
       }
     );
   }
 
   public async updateNotebook(notebook: Notebook): Promise<void> {
-    await this._notebooksService.updateNotebook(notebook);
+    this._notebooksService.updateNotebook(notebook);
     !notebook.name ? this.getAllNotebooks() : null;
   }
 
-  public deleteNotebook(notebook: Notebook): void {
-    if (confirm(`Are you sure you want to delete ${notebook.name} Notebook?`)) {
-      this._notebooksService.deleteNotebook(notebook.id).subscribe(
-        (res) => {
-          console.log(res);
-
-          this.getAllNotebooks();
-          // const index: number = this.notebooks.indexOf(notebook);
-          // console.log(index);
-          // this.notebooks.slice(index, 2);
-          console.log(this.notebooks);
-        },
-        (err) => {
-          console.log(err.message);
-        }
-      );
-    }
+  public deleteNotebook(notebookID: string): void {
+    // if (confirm(`Are you sure you want to delete ${notebook.name} Notebook?`)) {
+    this._notebooksService.deleteNotebook(notebookID).subscribe(
+      (res) => {
+        this.notebooks = this.notebooks.filter(notebook => notebook.id !== notebookID);
+        this._notebooksService.notebooks = this.notebooks;
+      },
+      (err) => {
+        alert(err.message);
+      }
+    );
+    // }
   }
 
   public fake(): void {
     console.log('called fake()');
   }
 
-  public async updateNote(note: Note): Promise<void> {
-    await this._notesService.updateNote(note);
+  public updateNote(note: Note): void {
+    this._notesService.updateNote(note);
+    if (!note.title) {
+      this.getNotesOfNotebook(this.selectedNotebook);
+    }
   }
 
+  public async deleteNote(id: string): Promise<void> {
+    this._notesService.deleteNote(id)
+      .subscribe(
+        (res: string) => {
+          this.notes = this.notes.filter(note => note.id !== id);
+          this._notesService.notes = this.notes;
+        },
+        (err: any) => {
+          alert(`Error: Something happend!`);
+        }
+      );
+
+  }
+
+  public setSelectedNotebook(notebook: Notebook): void {
+    this.selectedNotebook = notebook;
+  }
+
+  public getNotesOfNotebook(notebook: Notebook): void {
+    this._notebooksService.getNotesOfNotebook(notebook.id)
+      .subscribe(
+        (res: Note[]) => {
+          this.notes = res;
+          this._notesService.notes = this.notes;
+        },
+        (error: any) => {
+          alert(error.message)
+        }
+      )
+
+  }
 
 }

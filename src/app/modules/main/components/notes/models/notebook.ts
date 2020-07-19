@@ -1,10 +1,12 @@
-export interface Notebook {
-  name: string;
+export class Notebook {
   id?: string;
-  // readonly class: string;
-  // readonly action: Actions;
-}
 
-export enum Classes {
-  BOOK_ICON = 'fas fa-book fa-lg',
+  constructor(private _name) { }
+
+  public get name() {
+    return this._name;
+  }
+  public set name(value) {
+    this._name = value;
+  }
 }
