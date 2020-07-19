@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Notebook } from '../../components/notes/models/notebook';
 import { Observable } from 'rxjs';
+import { Note } from '../../components/notes/models/note';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class NotebooksService {
   private readonly NOTEBOOKS_BASE_URL = 'api/notebook';
   private readonly NOTEBOOKS_ALL_URI = '/all';
 
-  public notebooks: Notebook[];
+  public notebooks: Notebook[] = [];
 
   public getAllNotebooks(): Observable<Notebook[]> {
     return this.http.get<Notebook[]>(
@@ -34,10 +35,9 @@ export class NotebooksService {
     } else {
       this.http.put<Notebook>(`${this.NOTEBOOKS_BASE_URL}`, notebook).subscribe(
         (res) => {
-          console.log(res);
+          console.info(res);
         },
         (err) => {
-          console.warn(err);
           alert(err.message);
         }
       );
@@ -46,5 +46,9 @@ export class NotebooksService {
 
   public deleteNotebook(id: string): Observable<void> {
     return this.http.delete<void>(`${this.NOTEBOOKS_BASE_URL}/${id}`);
+  }
+
+  public getNotesOfNotebook(notebookID: string): Observable<Note[]> {
+    return this.http.get<Note[]>(`${this.NOTEBOOKS_BASE_URL}/${notebookID}/notes`);
   }
 }
