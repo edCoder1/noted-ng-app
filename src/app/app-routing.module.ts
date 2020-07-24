@@ -1,19 +1,14 @@
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { BetaStuffRoutingModule } from './modules/beta-stuff/beta-stuff-routing.module';
 
 const routes: Routes = [
   {
     path: 'feedback',
-    loadChildren: () =>
-      import('./modules/feedback/feedback.module').then(
-        (m) => m.FeedbackModule
-      ),
+    loadChildren: () => import('./modules/feedback/feedback.module').then((m) => m.FeedbackModule),
   },
   {
     path: 'notes',
-    loadChildren: () =>
-      import('./modules/main/main.module').then((m) => m.MainModule),
+    loadChildren: () => import('./modules/main/main-dashboard.module').then((m) => m.MainDashboardModule),
   },
   {
     path: 'beta',

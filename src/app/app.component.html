@@ -1,5 +1,8 @@
 <app-header class="container"></app-header>
-<router-outlet class="container"></router-outlet>
+<!-- <router-outlet class="container"></router-outlet> -->
+
+<app-main-dashboard></app-main-dashboard>
+
 <div>
   <button class="btn btn-info col-md-12 btn-try-beta" *ngIf="!hideTryButton" routerLink="/beta"
     (click)="tryBetaStuff()">
