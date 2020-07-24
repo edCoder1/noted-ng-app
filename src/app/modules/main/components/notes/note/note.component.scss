@@ -1,0 +1,37 @@
+section.notes-panel {
+    // margin-left: 2rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+    max-width: 100%;
+    max-height: 50%;
+    display: inline-block;
+    > div.single-card {
+      background: greenyellow;
+      margin-bottom: 0.6rem;
+      min-width: 280px;
+      > div {
+        > span {
+          > input.note-title{
+            background: transparent;
+            border: none;
+            font-weight: bold;
+            font-size: 17px;
+            margin: 0.5rem;
+          }
+        }
+        > div {
+          margin: 0.5rem;
+          > span{
+            > textarea.note-text {
+              width: 100%;
+              border: none;
+              background: transparent;
+              font-size: 17px;
+              overflow: hidden;
+            }
+          }
+        }
+      }
+
+    }
+  }

@@ -10,4 +10,4 @@ const routes: Routes = [{ path: '', component: NotesComponent }];
   providers: [NotesService],
   exports: [RouterModule],
 })
-export class MainRoutingModule {}
+export class MainDashboardRoutingModule { }

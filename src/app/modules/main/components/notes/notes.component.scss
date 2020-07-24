@@ -1,5 +1,5 @@
 div.notes-content {
-  display: flex;
+  // display: flex;
   padding-left: 1rem;
   padding-top: 3rem;
 
@@ -7,25 +7,25 @@ div.notes-content {
     padding-top: 1rem;
     padding-bottom: 0.5rem;
     background: #eeeeee;
-    width: 30%;
-    max-width: 30%;
+    width: 100%;
+    // max-width: 30%;
 
-    ul li {
+    ol li:hover {
+      background: #fcfcfc;
+      border-radius: 8px;
+    }
+    ol li {
       display: flow-root;
       > i {
         cursor: pointer;
         padding-right: 0.5rem;
       }
-      > label {
-        padding-left: 1rem;
-        cursor: pointer;
-      }
       > input {
-        padding-left: 1rem;
-        width: 70%;
+        // padding-left: 1rem;
+        width: 95%;
         cursor: context-menu;
         border: none;
-        background: #eeeeee;
+        background: transparent;
       }
       > input:focus {
         border-top: none; // ?
@@ -39,41 +39,12 @@ div.notes-content {
       }
     }
   }
-  section.notes-panel {
-    margin-left: 2rem;
-    padding-left: 0.8rem;
-    padding-right: 0.8rem;
-    max-width: 100%;
-    max-height: 20%;
-    > div.single-card {
-      background: greenyellow;
-      margin-bottom: 0.6rem;
-      > div {
-        > span {
-          > input.note-title{
-            background: transparent;
-            border: none;
-            font-weight: bold;
-            font-size: 17px;
-            margin: 0.5rem;
-          }
-        }
-        > div {
-          margin: 0.5rem;
-          > span{
-            > textarea.note-text {
-              width: 100%;
-              border: none;
-              background: transparent;
-              font-size: 17px;
-              overflow: hidden;
-            }
-          }
-        }
-      }
+}
 
-    }
-  }
+
+.notebooks-title {
+  margin-top: 2rem;;
+  padding-left: 1rem;
 }
 
 // general style

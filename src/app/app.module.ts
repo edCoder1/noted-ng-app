@@ -5,10 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MainDashboardModule } from './modules/main/main-dashboard.module';
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, MainDashboardModule],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

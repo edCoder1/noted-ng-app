@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { NotesService } from '../../services/notes/notes.service';
 import { Note } from './models/note';
 import { Subscription } from 'rxjs';
@@ -63,6 +63,20 @@ export class NotesComponent implements OnInit, OnDestroy {
     );
   }
 
+  public removeNote(incommingData: string): void {
+    this._notesService.deleteNote(incommingData)
+      .subscribe(
+        (res: string) => {
+          this.notes = this._notesService.notes.filter(note => note.id !== incommingData);
+          this._notesService.notes = this.notes;
+        },
+        (err: any) => {
+          alert(`Error: Something happend!`);
+        }
+      );
+
+  }
+
   public async updateNotebook(notebook: Notebook): Promise<void> {
     this._notebooksService.updateNotebook(notebook);
     !notebook.name ? this.getAllNotebooks() : null;
@@ -84,27 +98,6 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   public fake(): void {
     console.log('called fake()');
-  }
-
-  public updateNote(note: Note): void {
-    this._notesService.updateNote(note);
-    if (!note.title) {
-      this.getNotesOfNotebook(this.selectedNotebook);
-    }
-  }
-
-  public async deleteNote(id: string): Promise<void> {
-    this._notesService.deleteNote(id)
-      .subscribe(
-        (res: string) => {
-          this.notes = this.notes.filter(note => note.id !== id);
-          this._notesService.notes = this.notes;
-        },
-        (err: any) => {
-          alert(`Error: Something happend!`);
-        }
-      );
-
   }
 
   public setSelectedNotebook(notebook: Notebook): void {
