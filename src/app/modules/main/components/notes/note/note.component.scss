@@ -17,6 +17,7 @@ section.notes-panel {
             font-weight: bold;
             font-size: 17px;
             margin: 0.5rem;
+            width: 84%;
           }
         }
         > div {
@@ -29,6 +30,11 @@ section.notes-panel {
               font-size: 17px;
               overflow: hidden;
             }
+          }
+          > span.note-date {
+            font-size: small;
+            float: right;
+            padding-right: 0.8rem;
           }
         }
       }

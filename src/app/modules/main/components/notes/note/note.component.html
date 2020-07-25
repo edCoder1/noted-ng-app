@@ -2,13 +2,16 @@
     <div class="card single-card">
         <div>
             <span>
-                <input [(ngModel)]="note.title" type="text" class="note-title" (change)="updateNote(note)">
+                <input [(ngModel)]="note.title" type="text" class="note-title" (change)="emitUpdateNoteEvent(note)">
                 <i class="fa fa-trash-alt fa-sm text-danger" (click)="onRemoveNote(note.id)"></i>
             </span>
             <div>
                 <span>
                     <textarea [(ngModel)]="note.text" type="text" class="note-text"
-                        (change)="updateNote(note)"></textarea>
+                        (change)="emitUpdateNoteEvent(note)"></textarea>
+                </span>
+                <span class="note-date">
+                    {{ note.lastModifiedOn | date }}
                 </span>
             </div>
         </div>

@@ -22,7 +22,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   public notes: Note[] = [];
   public notebooks: Notebook[] = [];
 
-  public selectedNotebook: Notebook;
+  public selectedNotebook: Notebook = null;
 
   ngOnInit(): void {
     this.getAllNotes();
@@ -63,18 +63,25 @@ export class NotesComponent implements OnInit, OnDestroy {
     );
   }
 
-  public removeNote(incommingData: string): void {
-    this._notesService.deleteNote(incommingData)
+  public removeNote(id: string): void {
+    this._notesService.deleteNote(id)
       .subscribe(
         (res: string) => {
-          this.notes = this._notesService.notes.filter(note => note.id !== incommingData);
+          this.notes = this._notesService.notes.filter(note => note.id !== id);
           this._notesService.notes = this.notes;
         },
         (err: any) => {
-          alert(`Error: Something happend!`);
+          alert(`Error: Something happened!`);
         }
       );
 
+  }
+
+  public updateNote(note: Note, selectedNotebook: Notebook = null) {
+    this._notesService.updateNote(note);
+    if (!note.title) {
+      selectedNotebook ? this.getNotesOfNotebook(selectedNotebook) : this.getAllNotes();
+    }
   }
 
   public async updateNotebook(notebook: Notebook): Promise<void> {
@@ -115,7 +122,6 @@ export class NotesComponent implements OnInit, OnDestroy {
           alert(error.message)
         }
       )
-
   }
 
 }

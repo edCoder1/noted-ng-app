@@ -6,7 +6,7 @@
     <ol>
       <li (click)="onAllNotes()">
         <i class="fas fa-book"></i>
-        <label>All Note</label>
+        <label>All Notes</label>
       </li>
       <li *ngFor="let notebook of notebooks" class="notebook-item" (click)="setSelectedNotebook(notebook)"
         (click)="getNotesOfNotebook(notebook)">
@@ -21,5 +21,6 @@
   <h3 class="notebooks-title" *ngIf="!selectedNotebook">All Notes</h3>
   <h3 class="notebooks-title" *ngIf="selectedNotebook">{{selectedNotebook.name}}</h3>
   <p class="notebooks-title" *ngIf="!notes.length">There are no Notes in this Notebook :(</p>
-  <app-note *ngFor="let note of notes" [note]="note" (removeNoteEvent)="removeNote($event)"></app-note>
+  <app-note *ngFor="let note of notes" [note]="note" (removeNoteEvent)="removeNote($event)"
+    (updatedNoteEvent)="updateNote($event, selectedNotebook)"></app-note>
 </div>
