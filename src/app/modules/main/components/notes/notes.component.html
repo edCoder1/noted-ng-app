@@ -21,6 +21,6 @@
   <h3 class="notebooks-title" *ngIf="!selectedNotebook">All Notes</h3>
   <h3 class="notebooks-title" *ngIf="selectedNotebook">{{selectedNotebook.name}}</h3>
   <p class="notebooks-title" *ngIf="!notes.length">There are no Notes in this Notebook :(</p>
-  <app-note *ngFor="let note of notes" [note]="note" (removeNoteEvent)="removeNote($event)"
-    (updatedNoteEvent)="updateNote($event, selectedNotebook)"></app-note>
+  <app-note *ngFor="let note of notes | noteTextFilter:this._notesService.searchText" [note]="note"
+    (removeNoteEvent)="removeNote($event)" (updatedNoteEvent)="updateNote($event, selectedNotebook)"></app-note>
 </div>
