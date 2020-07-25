@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from '../../components/notes/models/note';
 import { Notebook } from '../../components/notes/models/notebook';
-import { platform } from 'os';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +14,13 @@ export class NotesService {
 
   constructor(private http: HttpClient) { }
 
-  private readonly NOTES_BASE_URL = 'api/note';
-  private readonly NOTES_ALL_URI = '/all';
+  private readonly NOTEBOOKS_API: string = 'http://localhost:6060';
+
+  private readonly NOTES_BASE_URL: string = 'api/note';
+  private readonly NOTES_ALL_URI: string = 'all';
 
   public getAllNotes(): Observable<Note[]> {
-    return this.http.get<Note[]>(`${this.NOTES_BASE_URL}${this.NOTES_ALL_URI}`);
+    return this.http.get<Note[]>(`${this.NOTEBOOKS_API}/${this.NOTES_BASE_URL}/${this.NOTES_ALL_URI}`);
   }
 
   public createNote(selectedNotebook: Notebook): Observable<Note> {
