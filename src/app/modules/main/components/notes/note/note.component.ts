@@ -14,8 +14,8 @@ export class NoteComponent implements OnInit {
 
   @Input()
   note: Note;
-  @Input()
-  selectedNotebook: Notebook;
+  @Output()
+  updatedNoteEvent = new EventEmitter<Note>();
   @Output()
   removeNoteEvent = new EventEmitter<string>();
 
@@ -27,11 +27,8 @@ export class NoteComponent implements OnInit {
   }
 
 
-  public updateNote(note: Note): void {
-    this._notesService.updateNote(note);
-    if (!note.title) {
-      // this.getNotesOfNotebook(this.selectedNotebook);
-    }
+  public emitUpdateNoteEvent(note: Note): void {
+    this.updatedNoteEvent.emit(note)
   }
 
 }
