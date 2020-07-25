@@ -12,7 +12,7 @@ import { NotebooksService } from '../../services/notebooks/notebooks.service';
 })
 export class NotesComponent implements OnInit, OnDestroy {
   constructor(
-    private _notesService: NotesService,
+    public _notesService: NotesService,
     private _notebooksService: NotebooksService
   ) { }
 

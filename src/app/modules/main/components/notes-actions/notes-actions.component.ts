@@ -13,12 +13,16 @@ import { NotesService } from '../../services/notes/notes.service';
 export class NotesActionsComponent implements OnInit {
 
 
-  @Input() selectedNotebook: Notebook;
+  @Input()
+  selectedNotebook: Notebook;
+
+  searchText: string = null;
+
 
 
   constructor(
     private _notebooksService: NotebooksService,
-    private _notesService: NotesService
+    public _notesService: NotesService
   ) { }
 
   ngOnInit(): void { }

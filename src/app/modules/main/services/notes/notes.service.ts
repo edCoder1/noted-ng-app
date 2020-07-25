@@ -3,13 +3,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Note } from '../../components/notes/models/note';
 import { Notebook } from '../../components/notes/models/notebook';
+import { platform } from 'os';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class NotesService {
 
   public notes: Note[] = [];
+  public searchText: string = null;
 
   constructor(private http: HttpClient) { }
 
