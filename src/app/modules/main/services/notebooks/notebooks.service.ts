@@ -10,14 +10,16 @@ import { Note } from '../../components/notes/models/note';
 export class NotebooksService {
   constructor(private http: HttpClient) { }
 
-  private readonly NOTEBOOKS_BASE_URL = 'api/notebook';
-  private readonly NOTEBOOKS_ALL_URI = '/all';
+  private readonly NOTEBOOKS_API: string = 'http://localhost:6060';
+
+  private readonly NOTEBOOKS_BASE_URL: string = 'api/notebook';
+  private readonly NOTEBOOKS_ALL_URI: string = 'all';
 
   public notebooks: Notebook[] = [];
 
   public getAllNotebooks(): Observable<Notebook[]> {
     return this.http.get<Notebook[]>(
-      `${this.NOTEBOOKS_BASE_URL}${this.NOTEBOOKS_ALL_URI}`
+      `${this.NOTEBOOKS_API}/${this.NOTEBOOKS_BASE_URL}/${this.NOTEBOOKS_ALL_URI}`
     );
   }
 
